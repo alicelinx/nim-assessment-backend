@@ -73,6 +73,11 @@ const calcTotalSales = (orders) => {
   return totalSales;
 };
 
+const getOrdersByStatus = async (status) => {
+  const orders = await Order.find({ status }).populate("items.item");
+  return orders;
+};
+
 const create = async (body) => {
   const order = await Order.create(body);
   return order;
@@ -97,6 +102,7 @@ module.exports = {
   getAll,
   getOne,
   calcTotalSales,
+  getOrdersByStatus,
   create,
   update,
   remove,
